@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import * as BooksAPI from "./BooksAPI";
 import BooksList from "./BooksList";
+import './Search.css';
 
 class SearchBooks extends Component {
   state = {
@@ -17,21 +18,21 @@ class SearchBooks extends Component {
     this.updateBookRequest(query); //error updateBookRequest is not a function ->
   };
 
-  updateBookRequest = query => {
+  updateBookRequest = (query) => {
     //updateBookRequest function
     if (query) {
-      BooksAPI.search(query).then(bookRequest => {
+      BooksAPI.search(query).then((bookRequest) => {
         //when receiving input from user, search in booksAPI and return an object
         if (bookRequest.error) {
           //if there is no match, return an empty array
-          this.setState({ bookRequest: [] });
+          this.setState({ bookRequest: [] })
         } else {
           //if there is no error, create a new state which matches user input
-          this.setState({ bookRequest: bookRequest });
+          this.setState({ bookRequest: bookRequest })}})
+        } else {
+          this.setState({ bookRequest: [] }) //if the user deletes any input, do not show any book, returning to original value
         }
-      });
     }
-  };
 
   render() {
     return (
