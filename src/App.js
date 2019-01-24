@@ -1,39 +1,36 @@
-import React from 'react'
-import * as BooksAPI from './BooksAPI'
-import './App.css'
+import React from "react";
+import * as BooksAPI from "./BooksAPI";
+import { Route } from "react-router-dom";
+import "./App.css";
+import MyReads from "./MyReads";
+import SearchBooks from "./SearchBooks";
 
 class BooksApp extends React.Component {
-
-  state = {    //state of the books component
+  state = {
+    //state of the books component
     books: [], //empty array which will be filled with booksAPI when the component is mount
     bookRequest: [] //the array which is created when a search is made
   };
 
   render() {
-    return (
-      <div className="app">
-        {this.state.showSearchPage ? (
-          <div className="search-books">
-            <div className="search-books-bar">
-              <button className="close-search" onClick={() => this.setState({ showSearchPage: false })}>Close</button>
-              <div className="search-books-input-wrapper">
-                {/*
-                  NOTES: The search from BooksAPI is limited to a particular set of search terms.
-                  You can find these search terms here:
-                  https://github.com/udacity/reactnd-project-myreads-starter/blob/master/SEARCH_TERMS.md
+    return
+    <div className="app"> {/*here we include both components (mainpage + searchpage) and render them into UI using routing to create back and forward options in the browser*/}
+    <Route exact path="/" {/*inserting route to create back and forward options in the UI*/}
+      render={() => (
+        <MyReads/>
+      )}
+    />
 
-                  However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if
-                  you don't find a specific author or title. Every search is limited by search terms.
-                */}
-                <input type="text" placeholder="Search by title or author"/>
+    <Route
+      path="/search"
+      render={() => (
+        <SearchBooks/>
+      )}
+    />
 
-              </div>
-            </div>
-            <div className="search-books-results">
-              <ol className="books-grid"></ol>
-            </div>
-          </div>
-        ) : (
-          
+    </div>
+  )
+  }
+}
 
-export default BooksApp
+export default BooksApp;
