@@ -21,15 +21,15 @@ class SearchBooks extends Component {
         {" "}
         {/*rendering the searchbox field*/}
         <div className="search-books-bar">
-          <Link to="/" className="close-search">
+          <Link to="/" className="close-search"> {/*back arrow to go to main page*/}
             Close
           </Link>
           <div className="search-books-input-wrapper">
             <input
               type="text"
-              placeholder="Search by title or author"
-              value={this.state.query}
-              onChange={event => this.updateQuery(event.target.value)}
+              placeholder="Search by title or author" {/*here user will input any query*/}
+              value={this.state.query} {/*the value will be the state of what the user wrote*/}
+              onChange={event => this.updateQuery(event.target.value)} {/*on change the event listener invokes updateQuery, then calls setState*/}
             />
           </div>
         </div>
