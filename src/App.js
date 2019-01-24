@@ -13,29 +13,30 @@ class BooksApp extends React.Component {
   };
 
   componentDidMount() {
-    BooksAPI.getAll().then(books => { //fetching the books from booksAPI and save them into the array called books
+    BooksAPI.getAll().then(books => {
+      //fetching the books from booksAPI and save them into the array called books
       this.setState({ books });
     });
   }
 
+  moveShelf = (book, shelf) => {
+    //update the shelfs by requesting update from backend server, getting the new books and shelfs
+    BooksAPI.update(book, shelf).then(() => { //update returns a promise, and then send us the book from server and the shelf state
+      BooksAPI.getAll().then(books => { //Returns a Promise which resolves to a JSON object containing a collection of book objects
+        this.setState({ books }); //set the state of books with the new returned object
+      });
+    });
+  };
+
   render() {
-    return
-    <div className="app"> {/*here we include both components (mainpage + searchpage) and render them into UI using routing to create back and forward options in the browser*/}
-    {/*below we insert route to create back and forward options in the UI*/}
-    <Route exact path="/"
-      render={() => (
-        <MyReads/>
-      )}
-    />
-
-    <Route
-      path="/search"
-      render={() => (
-        <SearchBooks/>
-      )}
-    />
-
-    </div>
+    return;
+    <div className="app"> {/*Expected an assignment or function call and instead saw an expression?????*/}
+      {" "}
+      {/*here we include both components (mainpage + searchpage) and render them into UI using routing to create back and forward options in the browser*/}
+      {/*below we insert route to create back and forward options in the UI*/}
+      <Route exact path="/" render={() => <MyReads />} />
+      <Route path="/search" render={() => <SearchBooks />} />
+    </div>;
   }
 }
 
