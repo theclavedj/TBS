@@ -29,15 +29,23 @@ class BooksApp extends React.Component {
   };
 
   render() {
-    return;
+    return (
     <div className="app"> {/*Expected an assignment or function call and instead saw an expression?????*/}
-      {" "}
       {/*here we include both components (mainpage + searchpage) and render them into UI using routing to create back and forward options in the browser*/}
       {/*below we insert route to create back and forward options in the UI*/}
-      <Route exact path="/" render={() => <MyReads />} />
-      <Route path="/search" render={() => <SearchBooks />} />
-    </div>;
-  }
+      <Route exact path="/"
+        render={() => (
+          <MyReads/>
+        )}
+      />
+
+      <Route path="/search" render={() => (
+        <SearchBooks/>
+      )}
+    />
+  </div>
+);
+}
 }
 
 export default BooksApp;
