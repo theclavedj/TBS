@@ -27,13 +27,26 @@ class SearchBooks extends Component {
           <div className="search-books-input-wrapper">
             <input
               type="text"
-              placeholder="Search by title or author" {/*here user will input any query*/}
-              value={this.state.query} {/*the value will be the state of what the user wrote*/}
-              onChange={event => this.updateQuery(event.target.value)} {/*on change the event listener invokes updateQuery, then calls setState*/}
+              /*below user will input any query*/
+              placeholder="Search by title or author"
+              /*below the value will be the state of what the user wrote*/
+              value={this.state.query}
+              /*on change the event listener invokes updateQuery, then calls setState*/
+              onChange={event => this.updateQuery(event.target.value)}
             />
           </div>
         </div>
-      </div>
+        <div className="search-results">
+          <ol className="books-list">
+            {this.state.bookRequest.map(bookRequest => {
+              let shelf = "";
+              this.props.books.map(book =>
+                bookRequest.id === book.id ? (shelf = book.shelf) : (shelf = "")
+              );
+              })}
+              </ol>
+            </div>
+          </div>
     );
   }
 }

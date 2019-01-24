@@ -35,12 +35,12 @@ class BooksApp extends React.Component {
       {/*below we insert route to create back and forward options in the UI*/}
       <Route exact path="/"
         render={() => (
-          <MyReads/>
+          <MyReads moveShelf={this.moveShelf} books={this.state.books}/> /*solved TypeError: Cannot read property 'filter' of undefined on myreads*/
         )}
       />
 
       <Route path="/search" render={() => (
-        <SearchBooks/>
+        <SearchBooks moveShelf={this.moveShelf} books={this.state.books}/>
       )}
     />
   </div>

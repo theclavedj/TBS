@@ -13,15 +13,12 @@ class MyReads extends Component {
         <div className="list-books-content">
           <div>
             <div className="bookshelf">
-              <h2 className="bookshelf-title">What I'm reading</h2>
-              {/*first shelf, title what im reading*/}
+              <h2 className="bookshelf-title">What I'm reading</h2> {/*first shelf, title what im reading*/}
               <div className="bookshelf-books">
                 <ol className="books-grid">
-                  {this.props.books //access props of the books and filter them to match currentreading component state
-                    .filter(book => book.shelf === "currentlyReading")
-                    .map((
-                      book //create new array of books and display them into booklist shelf
-                    ) => (
+                  {this.props.books
+                    .filter(book => book.shelf === "currentlyReading") //access props of the books and filter them to match currentreading component state
+                    .map(book => ( //create new array of books and display them into booklist shelf
                       <li key={book.id}>
                         <BooksList
                           book={book}
