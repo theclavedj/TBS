@@ -12,6 +12,12 @@ class BooksApp extends React.Component {
     bookRequest: [] //the array which is created when a search is made
   };
 
+  componentDidMount() {
+    BooksAPI.getAll().then(books => { //fetching the books from booksAPI and save them into the array called books
+      this.setState({ books });
+    });
+  }
+
   render() {
     return
     <div className="app"> {/*here we include both components (mainpage + searchpage) and render them into UI using routing to create back and forward options in the browser*/}
