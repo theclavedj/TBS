@@ -2,6 +2,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import * as BooksAPI from "./BooksAPI";
+import BooksList from "./BooksList";
 
 class SearchBooks extends Component {
   state = {
@@ -16,12 +17,16 @@ class SearchBooks extends Component {
     this.updateBookRequest(query); //error updateBookRequest is not a function ->
   };
 
-  updateBookRequest = query => { //updateBookRequest function
+  updateBookRequest = query => {
+    //updateBookRequest function
     if (query) {
-      BooksAPI.search(query).then(bookRequest => { //when receiving input from user, search in booksAPI and return an object
-        if (bookRequest.error) { //if there is no match, return an empty array
+      BooksAPI.search(query).then(bookRequest => {
+        //when receiving input from user, search in booksAPI and return an object
+        if (bookRequest.error) {
+          //if there is no match, return an empty array
           this.setState({ bookRequest: [] });
-        } else { //if there is no error, create a new state which matches user input
+        } else {
+          //if there is no error, create a new state which matches user input
           this.setState({ bookRequest: bookRequest });
         }
       });
@@ -34,7 +39,9 @@ class SearchBooks extends Component {
         {" "}
         {/*rendering the searchbox field*/}
         <div className="search-books-bar">
-          <Link to="/" className="close-search"> {/*back arrow to go to main page*/}
+          <Link to="/" className="close-search">
+            {" "}
+            {/*back arrow to go to main page*/}
             Close
           </Link>
           <div className="search-books-input-wrapper">
@@ -56,11 +63,23 @@ class SearchBooks extends Component {
               this.props.books.map(book =>
                 bookRequest.id === book.id ? (shelf = book.shelf) : (shelf = "")
               );
-              })}
-              </ol>
-            </div>
-          </div>
+
+              return (
+                //create new array of books that match user input and display them into searchbooks UI
+                <ol key={bookRequest.id}>
+                  <BooksList
+                    book={bookRequest}
+                    currentShelf={shelf}
+                    moveShelf={this.props.moveShelf}
+                  />
+                </ol>
+              );
+            })}
+          </ol>
+        </div>
+      </div>
     );
   }
 }
+
 export default SearchBooks;
