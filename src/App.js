@@ -21,7 +21,8 @@ class BooksApp extends React.Component {
   render() {
     return
     <div className="app"> {/*here we include both components (mainpage + searchpage) and render them into UI using routing to create back and forward options in the browser*/}
-    <Route exact path="/" {/*inserting route to create back and forward options in the UI*/}
+    {/*below we insert route to create back and forward options in the UI*/}
+    <Route exact path="/"
       render={() => (
         <MyReads/>
       )}
@@ -35,7 +36,6 @@ class BooksApp extends React.Component {
     />
 
     </div>
-  )
   }
 }
 
