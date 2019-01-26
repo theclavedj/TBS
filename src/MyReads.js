@@ -8,7 +8,8 @@ class MyReads extends Component {
     return (
       <div className="list-books">
         <div className="list-books-title">
-          <h1>MyReads</h1> {/*main shelf, title myreads*/}
+          <h1>My Reads</h1> {/*main shelf, title myreads*/}
+          <p> Keep track of your favorite books</p>
         </div>
         <div className="list-books-content">
           <div>

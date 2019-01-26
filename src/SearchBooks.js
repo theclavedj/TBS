@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import * as BooksAPI from "./BooksAPI";
 import BooksList from "./BooksList";
-import './Search.css';
+import "./Search.css";
 
 class SearchBooks extends Component {
   state = {
@@ -18,21 +18,23 @@ class SearchBooks extends Component {
     this.updateBookRequest(query); //error updateBookRequest is not a function ->
   };
 
-  updateBookRequest = (query) => {
+  updateBookRequest = query => {
     //updateBookRequest function
     if (query) {
-      BooksAPI.search(query).then((bookRequest) => {
+      BooksAPI.search(query).then(bookRequest => {
         //when receiving input from user, search in booksAPI and return an object
         if (bookRequest.error) {
           //if there is no match, return an empty array
-          this.setState({ bookRequest: [] })
+          this.setState({ bookRequest: [] });
         } else {
           //if there is no error, create a new state which matches user input
-          this.setState({ bookRequest: bookRequest })}})
-        } else {
-          this.setState({ bookRequest: [] }) //if the user deletes any input, do not show any book, returning to original value
+          this.setState({ bookRequest: bookRequest });
         }
+      });
+    } else {
+      this.setState({ bookRequest: [] }); //if the user deletes any input, do not show any book, returning to original value
     }
+  };
 
   render() {
     return (
@@ -60,11 +62,7 @@ class SearchBooks extends Component {
         <div className="search-results">
           <ol className="books-list">
             {this.state.bookRequest.map(bookRequest => {
-              let shelf = "";
-              this.props.books.map(book =>
-                bookRequest.id === book.id ? (shelf = book.shelf) : (shelf = "")
-              );
-
+              let shelf = "move";
               return (
                 //create new array of books that match user input and display them into searchbooks UI
                 <ol key={bookRequest.id}>

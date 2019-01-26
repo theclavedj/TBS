@@ -2,8 +2,23 @@ html, body, .root {
   height: 100%;
 }
 
-h1, h2, h3, h4 {
+h1 {
   text-align: center;
+  font-family: fantasy;
+  font-size: 5em;
+}
+
+p {
+  text-align: center;
+  font-family: fantasy;
+  font-size: 2em;
+  margin: 0px;
+  color: #fff0e0;
+}
+
+h2, h3, h4 {
+  text-align: center;
+  font-family: fantasy;
 }
 
 body {
@@ -17,7 +32,7 @@ body, .app {
 /* main page */
 
 .list-books-title {
-  padding: 10px 0;
+  padding: 10px 2;
   background: #0f9fd8;
   text-align: center;
 }
