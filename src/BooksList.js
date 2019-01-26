@@ -21,7 +21,6 @@ class BooksList extends Component {
         <div className="book-top">
           <div className="book-cover" style={displayThumbnail} />
           />
-
           <div className="book-shelf-changer">
             <select
               value={this.props.currentShelf}

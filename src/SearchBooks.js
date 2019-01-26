@@ -35,7 +35,7 @@ class SearchBooks extends Component {
       this.setState({ bookRequest: [] }); //if the user deletes any input, do not show any book, returning to original value
     }
   };
-
+  
   render() {
     return (
       <div className="search-books">

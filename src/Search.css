@@ -3,6 +3,13 @@ html, body, .root {
   box-sizing: content-box;
 }
 
+h1 {
+  padding: auto;
+  height: 90px;
+  padding-bottom: 5px;
+  padding-top: 0;
+}
+
 .books-list {
   width: auto;
   margin: auto;
