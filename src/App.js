@@ -34,7 +34,7 @@ class BooksApp extends React.Component {
     return (
       <div className="app">
         {" "}
-        {/*Expected an assignment or function call and instead saw an expression?????*/}
+        {/*Expected an assignment or function call and instead saw an expression?, solved*/}
         {/*here we include both components (mainpage + searchpage) and render them into UI using routing to create back and forward options in the browser*/}
         {/*below we insert route to create back and forward options in the UI*/}
         <Route
@@ -44,7 +44,7 @@ class BooksApp extends React.Component {
             <MyReads
               moveShelf={this.moveShelf}
               books={this.state.books}
-            /> /*solved TypeError: Cannot read property 'filter' of undefined on myreads*/
+            /> //solved TypeError: Cannot read property 'filter' of undefined on myreads
           )}
         />
         <Route
