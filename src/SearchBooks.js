@@ -14,12 +14,7 @@ class SearchBooks extends Component {
 
   updateQuery = query => {
     //update method as the form of truth lives in the component, from classroom this was applied to ListContacts.js project
-    this.setState({ query: query }); //deleted trim as doesn't allow multiple words search
-    this.updateBookRequest(query); //error updateBookRequest is not a function ->
-  };
-
-  updateBookRequest = query => {
-    //updateBookRequest function
+    this.setState({ query }); //deleted trim as doesn't allow multiple words search
     if (query) {
       BooksAPI.search(query).then(bookRequest => {
         //when receiving input from user, search in booksAPI and return an object
@@ -28,14 +23,14 @@ class SearchBooks extends Component {
           this.setState({ bookRequest: [] });
         } else {
           //if there is no error, create a new state which matches user input
-          this.setState({ bookRequest: bookRequest });
+          this.setState({ bookRequest });
         }
       });
     } else {
       this.setState({ bookRequest: [] }); //if the user deletes any input, do not show any book, returning to original value
     }
   };
-  
+
   render() {
     return (
       <div className="search-books">
@@ -61,14 +56,27 @@ class SearchBooks extends Component {
         </div>
         <div className="search-results">
           <ol className="books-list">
-            {this.state.bookRequest.map(bookRequest => {
-              let shelf = "move";
+            {this.state.bookRequest.map(requestedBook => {
+              //check the state of bookrequest and get an array of objects
+              requestedBook.shelf = "none"; //assigned to all objects a none category shelf
+              //console.log(requestedBook.shelf) received 20 none assigned objects, no shelves assigned
+              this.props.books.map((
+                book //access the properties of the books from parent and create a new array of books
+              ) =>
+                //console.log(this.props.books), received 9 objects within an array matching input query, https://medium.com/dailyjs/comparison-of-state-management-solutions-for-react-2161a0b4af7b
+                book.id === requestedBook.id //book id should be identical to the requested book id
+                  ? (requestedBook.shelf = book.shelf)
+                  : ""
+              ); //the shelf of requested book can be equal to actual book shelf, if not, assign a none category shelf
+
               return (
                 //create new array of books that match user input and display them into searchbooks UI
-                <ol key={bookRequest.id}>
+                <ol key={requestedBook.id}>
+                  {" "}
+                  {/*unique key for each item -seems like the id is generated automatically*/}
                   <BooksList
-                    book={bookRequest}
-                    currentShelf={shelf}
+                    book={requestedBook}
+                    currentShelf={requestedBook.shelf}
                     moveShelf={this.props.moveShelf}
                   />
                 </ol>
